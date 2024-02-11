@@ -52,14 +52,21 @@ class Room(MapSite):
 
 
 class Wall(MapSite):
+    """Стена"""
     def enter(self):
         pass
 
 
 class Door(MapSite):
+    """Дверь"""
+
+    def __init__(self, room1: Room, room2: Room):
+        self.room1 = room1
+        self.room2 = room2
+
     def enter(self):
         pass
 
 
 class Maze:
-    pass
+    def __init__(self):
