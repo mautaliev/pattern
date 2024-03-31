@@ -9,30 +9,7 @@ __author__ = 'Мауталиев С. И.'
 
 import random
 
-from helpers import print_obj_type
-from common import MapSite, Room, Maze, Direction
-
-
-class Wall(MapSite):
-    """Стена"""
-    def __init__(self):
-        print_obj_type(self)
-
-    def enter(self):
-        pass
-
-
-class Door(MapSite):
-    """Дверь"""
-
-    def __init__(self, room1: Room, room2: Room):
-        self.__room1 = room1
-        self.__room2 = room2
-        self.__is_open = False
-        print_obj_type(self)
-
-    def enter(self, **kwargs):
-        print('Дверь открыта!')
+from common import Wall, Door, Room, Maze, Direction
 
 
 # Создадим класс абстракной фабрики для построения лабиринта
