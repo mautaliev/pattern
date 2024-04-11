@@ -165,6 +165,7 @@ def create_maze(factory: MazeFactory) -> Maze:
 
 # Теперь мы можем спокойно вызывать функцию create_maze с разными конкретными фабриками и знать, что ничего не упадет
 # Ведь фабрика обеспечивает нам то, что объекты будут обязательно совместимы друг с другом
-maze1 = create_maze(MazeFactory())
-maze2 = create_maze(EnchantedMazeFactory())
-maze3 = create_maze(BombedMazeFactory())
+if __name__ == '__main__':
+    maze1 = create_maze(MazeFactory())
+    maze2 = create_maze(EnchantedMazeFactory())
+    maze3 = create_maze(BombedMazeFactory())
