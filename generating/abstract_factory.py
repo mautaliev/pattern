@@ -9,7 +9,7 @@ __author__ = 'Мауталиев С. И.'
 
 import random
 
-from common import Wall, Door, Room, Maze, Direction
+from generating.common import Wall, Door, Room, Maze, Direction
 
 
 # Создадим класс абстракной фабрики для построения лабиринта

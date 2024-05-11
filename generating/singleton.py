@@ -10,7 +10,7 @@ __author__ = 'Мауталиев С. И.'
 
 # На этот раз мне надоело переписывать уже существующую логику фабрик (как я делал в примете "Прототип"),
 # поэтому реализуем только часть, ответственную за логику данного паттерна
-from abstract_factory import MazeFactory, BombedMazeFactory, EnchantedMazeFactory, create_maze
+from generating.abstract_factory import MazeFactory, BombedMazeFactory, EnchantedMazeFactory, create_maze
 
 
 # В самом учебнике более подробная реализация с наследованием, а здесь же просто декоратор навесим на класс
@@ -42,17 +42,16 @@ class EnchantedFactorySingleton(EnchantedMazeFactory):
     pass
 
 
-# Дважды создаем объект, а это одно и то же, если нет, то ошибка
-if not MazeFactorySingleton() is MazeFactorySingleton():
-    raise Exception('Not a singleton!')
-if not BombedFactorySingleton() is BombedFactorySingleton():
-    raise Exception('Not a singleton!')
-if not EnchantedFactorySingleton() is EnchantedFactorySingleton():
-    raise Exception('Not a singleton!')
+if __name__ == '__main__':
+    # Дважды создаем объект, а это одно и то же, если нет, то ошибка
+    if not MazeFactorySingleton() is MazeFactorySingleton():
+        raise Exception('Not a singleton!')
+    if not BombedFactorySingleton() is BombedFactorySingleton():
+        raise Exception('Not a singleton!')
+    if not EnchantedFactorySingleton() is EnchantedFactorySingleton():
+        raise Exception('Not a singleton!')
 
-
-# Проверим, что основной функционал фабрик не поломался
-create_maze(MazeFactorySingleton())
-create_maze(BombedMazeFactory())
-create_maze(EnchantedMazeFactory())
-
+    # Проверим, что основной функционал фабрик не поломался
+    create_maze(MazeFactorySingleton())
+    create_maze(BombedMazeFactory())
+    create_maze(EnchantedMazeFactory())
