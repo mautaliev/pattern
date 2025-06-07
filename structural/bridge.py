@@ -110,7 +110,7 @@ class XWindowImp(WindowImp):
         print(f'Назначили верхнюю точку {point}')
 
     def imp_bottom(self, point):
-        print(f'Назначили верхнюю точку {point}')
+        print(f'Назначили нижнюю точку {point}')
 
     def device_rect(self):
         print('Нарисовали прямоугольник по верхней и нижней точке')

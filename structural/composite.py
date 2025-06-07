@@ -2,7 +2,7 @@
 Паттерн "Компоновщик"
 
  Подробности см. в книге "Паттерны объектно-ориентированного проектирования" Э. Гамма и др., 2022
- Паттерн "Мост" - с. 196
+ Паттерн "Компоновщик" - с. 196
 """
 from abc import ABCMeta, abstractmethod
 
@@ -13,6 +13,16 @@ class Component(metaclass=ABCMeta):
     """
     Абстрактный класс для описания интерфейса, общего для листового и обычного узлов
     """
+
+    def __init__(self, name: str, height: float = None, weight: float = None):
+        """Конструктор"""
+        self.name = name
+        self.height = height
+        self.weight = weight
+
+    def __str__(self):
+        """Получить название объекта"""
+        return self.name
 
     @abstractmethod
     def multiple_size(self, x: float):
@@ -31,14 +41,13 @@ class Composite(Component):
     """
     Класс, реализующий общую логику для представления узла, который может содержать в себе потомков
     """
-    def __init__(self, height: float = None, weight: float = None):
+    def __init__(self, name: str, height: float = None, weight: float = None):
         """
         Конструктор. Задает размеры
         :param height:
         :param weight:
         """
-        self.height = height
-        self.weight = weight
+        super().__init__(name, height, weight)
         self.children = []
 
     def multiple_size(self, x: float):
@@ -79,15 +88,6 @@ class Leaf(Component):
     Класс для представления элемента, который является листовым и не может содержать в себе потомков
     """
 
-    def __init__(self, height: float = None, weight: float = None):
-        """
-        Конструктор. Задает размеры
-        :param height:
-        :param weight:
-        """
-        self.height = height
-        self.weight = weight
-
     def multiple_size(self, x: float):
         """
         Изменить размер. Меняется размер всех потомков.
@@ -118,11 +118,11 @@ class Leaf(Component):
 def use_by_client():
 
     # Сделаем примерную структуру окна приложения
-    root_window = Composite(300, 300)
-    root_window.add(title := Leaf(50, 50))
-    root_window.add(text := Leaf(100, 50))
-    root_window.add(widget := Composite(200, 200))
-    widget.add(picture := Composite(10, 10))  # оставим картинку пустым узлом
+    root_window = Composite('Окно', 300, 300)
+    root_window.add(title := Leaf('Заголовок', 50, 50))
+    root_window.add(text := Leaf('Описание', 100, 50))
+    root_window.add(widget := Composite('Виджет', 200, 200))
+    widget.add(picture := Composite('Картинка', 10, 10))  # оставим картинку пустым узлом
 
     print('И теперь попробуем взаимодействовать')
     title.multiple_size(0.5)
